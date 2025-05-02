@@ -10,16 +10,20 @@ public class ProfesionalSalud extends Usuario {
 	private String especialidad;
 
 	private String disponibilidad;
+	
+	@Column(columnDefinition = "TEXT")
+	private String presentacion;
 
 	public ProfesionalSalud() {
 		super();
 	}
 
 	public ProfesionalSalud(Long id, String nombre, String correo, String contraseña, String rol, String especialidad,
-			String disponibilidad) {
+			String disponibilidad, String presentacion) {
 		super(id, nombre, correo, contraseña, rol);
 		this.especialidad = especialidad;
 		this.disponibilidad = disponibilidad;
+		this.presentacion = presentacion;
 	}
 
 	public String getEspecialidad() {
@@ -37,12 +41,19 @@ public class ProfesionalSalud extends Usuario {
 	public void setDisponibilidad(String disponibilidad) {
 		this.disponibilidad = disponibilidad;
 	}
+	
+	
+	public String getPresentacion() {
+		return presentacion;
+	}
+
+	public void setPresentacion(String presentacion) {
+		this.presentacion = presentacion;
+	}
 
 	public void aceptarSolicitud() {
-		System.out.println(getNombre() + " ha aceptado una solicitud de cita.");
 	}
 
 	public void actualizarDisponibilidad() {
-		System.out.println(getNombre() + " ha actualizado su disponibilidad.");
 	}
 }

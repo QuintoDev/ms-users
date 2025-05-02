@@ -22,13 +22,6 @@ public class UsuarioController {
 		this.usuarioRepository = usuarioRepository;
 	}
 
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Usuario> registrarUsuario(@RequestBody Usuario usuario) {
-	    Usuario guardado = usuarioService.registrarse(usuario);
-	    return ResponseEntity.ok(guardado);
-	}
-
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> obtenerUsuarioPorId(@PathVariable Long id) {
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
@@ -46,9 +39,9 @@ public class UsuarioController {
 	    Optional<Usuario> usuario = usuarioRepository.findById(id);
 	    if (usuario.isPresent()) {
 	        usuarioRepository.deleteById(id);
-	        return ResponseEntity.noContent().build(); // 204 No Content
+	        return ResponseEntity.noContent().build();
 	    } else {
-	        return ResponseEntity.notFound().build(); // 404 Not Found
+	        return ResponseEntity.notFound().build();
 	    }
 	}
 
