@@ -1,16 +1,24 @@
 package com.careassistant.users.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class ProfesionalSalud extends Usuario {
-
+	
+	@NotBlank(message = "La especialidad es obligatoria")
 	@Column(nullable = false)
 	private String especialidad;
 
 	private String disponibilidad;
 	
+	@NotEmpty
+	@NotBlank(message = "La presentación es obligatoria")
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(columnDefinition = "TEXT")
 	private String presentacion;
 

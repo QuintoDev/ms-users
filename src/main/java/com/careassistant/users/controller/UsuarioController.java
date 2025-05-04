@@ -1,11 +1,15 @@
 package com.careassistant.users.controller;
 
+import com.careassistant.users.dto.LoginDTO;
 import com.careassistant.users.model.Usuario;
 import com.careassistant.users.repository.UsuarioRepository;
 import com.careassistant.users.service.UsuarioService;
+
+import jakarta.validation.Valid;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +48,17 @@ public class UsuarioController {
 	        return ResponseEntity.notFound().build();
 	    }
 	}
-
+	
+    @PostMapping
+    public ResponseEntity<Usuario> registrar(@Valid @RequestBody Usuario usuario) throws Exception {
+        Usuario creado = usuarioService.registrar(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(creado);
+    }
+	
+	@PostMapping("/login")
+	public ResponseEntity<Usuario> login(@RequestBody LoginDTO login) throws Exception {
+	    Usuario usuario = usuarioService.iniciarSesion(login.getCorreo(), login.getContraseña());
+	    return ResponseEntity.ok(usuario);
+	}
 
 }

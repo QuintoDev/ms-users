@@ -38,4 +38,14 @@ public class AES256Encryptor {
 		byte[] decrypted = cipher.doFinal(decodedBytes);
 		return new String(decrypted, StandardCharsets.UTF_8);
 	}
+	
+	public boolean matches(String plainText, String encryptedText) {
+		try {
+			String decrypted = decrypt(encryptedText);
+			return decrypted.equals(plainText);
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 }
