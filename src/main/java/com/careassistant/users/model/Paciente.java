@@ -24,11 +24,4 @@ public class Paciente extends Usuario {
 		this.edad = edad;
 	}
 
-	public void buscarProfesional() {
-		System.out.println(getNombre() + " está buscando un profesional de salud...");
-	}
-
-	public void solicitarServicio() {
-		System.out.println(getNombre() + " ha solicitado un servicio médico a domicilio.");
-	}
 }

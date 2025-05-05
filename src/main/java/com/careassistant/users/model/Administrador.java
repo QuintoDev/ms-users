@@ -13,11 +13,4 @@ public class Administrador extends Usuario {
 		super(id, nombre, correo, contraseña, rol);
 	}
 
-	public void gestionarUsuarios() {
-		System.out.println(getNombre() + " está gestionando los usuarios del sistema.");
-	}
-
-	public void gestionarPlataforma() {
-		System.out.println(getNombre() + " está administrando la plataforma CareAssistant.");
-	}
 }

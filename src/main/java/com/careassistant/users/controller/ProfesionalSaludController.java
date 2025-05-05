@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.careassistant.users.service.ProfesionalSaludService;
 
 @RestController
-@RequestMapping("/profesionales")
+@RequestMapping("/professionals")
 public class ProfesionalSaludController {
 
     public ProfesionalSaludController(ProfesionalSaludService profesionalService) {

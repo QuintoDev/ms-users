@@ -59,9 +59,6 @@ public class ProfesionalSalud extends Usuario {
 		this.presentacion = presentacion;
 	}
 
-	public void aceptarSolicitud() {
-	}
-
 	public void actualizarDisponibilidad() {
 	}
 }
