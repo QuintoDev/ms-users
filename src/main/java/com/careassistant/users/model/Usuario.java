@@ -29,6 +29,8 @@ public class Usuario {
 	@NotBlank(message = "El nombre es obligatorio")
 	private String nombre;
 
+	private String apellido;
+
 	@NotBlank(message = "El correo es obligatorio")
 	@Email(message = "Formato de correo inválido")
 	@Column(unique = true, nullable = false)
@@ -39,7 +41,7 @@ public class Usuario {
 	private String contraseña;
 
 	private String rol;
-	
+
 	@CreationTimestamp
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(name = "fecha_creacion", updatable = false)
@@ -52,12 +54,13 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nombre, String correo, String contraseña, String rol) {
+	public Usuario(Long id, String nombre, String apellido, String correo, String contraseña, String rol) {
 		this.id = id;
 		this.nombre = nombre;
 		this.correo = correo;
 		this.contraseña = contraseña;
 		this.rol = rol;
+		this.apellido = apellido;
 	}
 
 	public Long getId() {
@@ -74,6 +77,14 @@ public class Usuario {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public String getCorreo() {

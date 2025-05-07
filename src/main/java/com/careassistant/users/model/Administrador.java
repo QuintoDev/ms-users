@@ -9,8 +9,8 @@ public class Administrador extends Usuario {
 		super();
 	}
 
-	public Administrador(Long id, String nombre, String correo, String contraseña, String rol) {
-		super(id, nombre, correo, contraseña, rol);
+	public Administrador(Long id, String nombre, String apellido, String correo, String contraseña, String rol) {
+		super(id, nombre, apellido, correo, contraseña, rol);
 	}
 
 }
