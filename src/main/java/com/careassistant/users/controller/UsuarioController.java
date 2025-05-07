@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.careassistant.users.dto.LoginDTO;
 import com.careassistant.users.model.ProfesionalSalud;
 import com.careassistant.users.model.Usuario;
 import com.careassistant.users.repository.ProfesionalSaludRepository;
@@ -45,19 +46,12 @@ public class UsuarioController {
 
 	@GetMapping
 	public ResponseEntity<?> obtenerUsuarios(@RequestParam(required = false) String especialidad,
-			@RequestParam(required = false) String ciudad, @RequestParam(required = false) String correo,
-			@RequestParam(required = false) String contraseña) throws Exception {
+			@RequestParam(required = false) String ciudad){
 
 		// Buscar por filtros: especialidad y ciudad
 		if (especialidad != null && ciudad != null) {
 			List<ProfesionalSalud> resultados = profesionalSaludRepository.buscarPorFiltros(especialidad, ciudad);
 			return ResponseEntity.ok(resultados);
-		}
-
-		// Iniciar sesión: correo y contraseña
-		if (correo != null && contraseña != null) {
-			Usuario usuario = usuarioService.iniciarSesion(correo, contraseña);
-			return ResponseEntity.ok(usuario);
 		}
 
 		// Obtener todos los usuarios
@@ -81,5 +75,12 @@ public class UsuarioController {
 		Usuario creado = usuarioService.registrar(usuario);
 		return ResponseEntity.status(HttpStatus.CREATED).body(creado);
 	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<Usuario> login(@RequestBody LoginDTO loginDTO) throws Exception {
+	    Usuario usuario = usuarioService.iniciarSesion(loginDTO.getCorreo(), loginDTO.getContraseña());
+	    return ResponseEntity.ok(usuario);
+	}
+
 
 }

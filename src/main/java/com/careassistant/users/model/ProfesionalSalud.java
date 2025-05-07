@@ -21,7 +21,6 @@ public class ProfesionalSalud extends Usuario {
 
 	@NotEmpty
 	@NotBlank(message = "La presentación es obligatoria")
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(columnDefinition = "TEXT")
 	private String presentacion;
 

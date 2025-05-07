@@ -38,7 +38,6 @@ public class Usuario {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String contraseña;
 
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String rol;
 	
 	@CreationTimestamp
