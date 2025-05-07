@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.careassistant.users.dto.LoginDTO;
-import com.careassistant.users.model.ProfesionalSalud;
+import com.careassistant.users.dto.ProfesionalSaludDTO;
 import com.careassistant.users.model.Usuario;
 import com.careassistant.users.repository.ProfesionalSaludRepository;
 import com.careassistant.users.repository.UsuarioRepository;
+import com.careassistant.users.service.ProfesionalSaludService;
 import com.careassistant.users.service.UsuarioService;
 
 import jakarta.validation.Valid;
@@ -29,13 +30,13 @@ public class UsuarioController {
 
 	private final UsuarioService usuarioService;
 	private final UsuarioRepository usuarioRepository;
-	private final ProfesionalSaludRepository profesionalSaludRepository;
+	private final ProfesionalSaludService profesionalSaludService;
 
 	public UsuarioController(UsuarioService usuarioService, UsuarioRepository usuarioRepository,
-			ProfesionalSaludRepository profesionalSaludRepository) {
+			ProfesionalSaludRepository profesionalSaludRepository, ProfesionalSaludService profesionalSaludService) {
 		this.usuarioService = usuarioService;
 		this.usuarioRepository = usuarioRepository;
-		this.profesionalSaludRepository = profesionalSaludRepository;
+		this.profesionalSaludService = profesionalSaludService;
 	}
 
 	@GetMapping("/{id}")
@@ -46,11 +47,11 @@ public class UsuarioController {
 
 	@GetMapping
 	public ResponseEntity<?> obtenerUsuarios(@RequestParam(required = false) String especialidad,
-			@RequestParam(required = false) String ciudad){
+			@RequestParam(required = false) String ciudad) {
 
 		// Buscar por filtros: especialidad y ciudad
 		if (especialidad != null && ciudad != null) {
-			List<ProfesionalSalud> resultados = profesionalSaludRepository.buscarPorFiltros(especialidad, ciudad);
+			List<ProfesionalSaludDTO> resultados = profesionalSaludService.buscarPorFiltros(especialidad, ciudad);
 			return ResponseEntity.ok(resultados);
 		}
 
@@ -75,12 +76,11 @@ public class UsuarioController {
 		Usuario creado = usuarioService.registrar(usuario);
 		return ResponseEntity.status(HttpStatus.CREATED).body(creado);
 	}
-	
+
 	@PostMapping("/login")
 	public ResponseEntity<Usuario> login(@RequestBody LoginDTO loginDTO) throws Exception {
-	    Usuario usuario = usuarioService.iniciarSesion(loginDTO.getCorreo(), loginDTO.getContraseña());
-	    return ResponseEntity.ok(usuario);
+		Usuario usuario = usuarioService.iniciarSesion(loginDTO.getCorreo(), loginDTO.getContraseña());
+		return ResponseEntity.ok(usuario);
 	}
-
 
 }

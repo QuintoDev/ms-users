@@ -3,6 +3,10 @@ package com.careassistant.users.service;
 import com.careassistant.users.model.ProfesionalSalud;
 import com.careassistant.users.repository.ProfesionalSaludRepository;
 import com.careassistant.users.security.AES256Encryptor;
+import com.careassistant.users.dto.ProfesionalSaludDTO;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,4 +44,25 @@ public class ProfesionalSaludService {
 	public void actualizarDisponibilidad(ProfesionalSalud profesional) {
 		System.out.println(profesional.getNombre() + " ha actualizado su disponibilidad.");
 	}
+
+	public List<ProfesionalSaludDTO> buscarPorFiltros(String especialidad, String ciudad) {
+		List<ProfesionalSalud> profesionales = profesionalSaludRepository.buscarPorFiltros(especialidad, ciudad);
+
+		return profesionales.stream().map(p -> {
+			ProfesionalSaludDTO dto = new ProfesionalSaludDTO();
+			dto.setNombre(p.getNombre());
+			dto.setEspecialidad(p.getEspecialidad());
+			dto.setCiudad(p.getCiudad());
+			dto.setCorreo(p.getCorreo());
+			dto.setDisponibilidad(p.getDisponibilidad());
+			dto.setRol(p.getRol());
+			try {
+				dto.setPresentacion(aes.decrypt(p.getPresentacion()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return dto;
+		}).collect(Collectors.toList());
+	}
+
 }
