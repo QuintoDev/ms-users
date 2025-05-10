@@ -6,6 +6,7 @@ public class ProfesionalSaludDTO {
 
 	private UUID id;
 	private String nombre;
+	private String apellido;
 	private String especialidad;
 	private String ciudad;
 	private String correo;
@@ -27,6 +28,14 @@ public class ProfesionalSaludDTO {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public String getEspecialidad() {

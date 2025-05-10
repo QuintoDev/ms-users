@@ -53,6 +53,7 @@ public class ProfesionalSaludService {
 			ProfesionalSaludDTO dto = new ProfesionalSaludDTO();
 			dto.setId(p.getId());
 			dto.setNombre(p.getNombre());
+			dto.setApellido(p.getApellido());
 			dto.setEspecialidad(p.getEspecialidad());
 			dto.setCiudad(p.getCiudad());
 			dto.setCorreo(p.getCorreo());
