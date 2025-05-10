@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -24,7 +25,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 public class Usuario {
 
 	@Id
-	private Long id;
+	@GeneratedValue
+	@Column(columnDefinition = "UUID", updatable = false, nullable = false)
+	private UUID id;
 
 	@NotBlank(message = "El nombre es obligatorio")
 	private String nombre;
@@ -54,20 +57,20 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nombre, String apellido, String correo, String contraseña, String rol) {
+	public Usuario(UUID id, String nombre, String apellido, String correo, String contraseña, String rol) {
 		this.id = id;
 		this.nombre = nombre;
+		this.apellido = apellido;
 		this.correo = correo;
 		this.contraseña = contraseña;
 		this.rol = rol;
-		this.apellido = apellido;
 	}
 
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

@@ -26,11 +26,11 @@ public class UsuarioService {
 	}
 
 	public Usuario registrar(Usuario usuario) throws Exception {
-		System.out.println(usuario.getContraseña());
 		if (usuario instanceof ProfesionalSalud profesional) {
 			return profesionalSaludService.registrar(profesional);
 		}
 		usuario.setContraseña(passwordEncoder.encode(usuario.getContraseña()));
+		usuario.setRol("PACIENTE");
 		logger.info("{} se ha registrado correctamente.", usuario.getNombre());
 		return usuarioRepository.save(usuario);
 	}

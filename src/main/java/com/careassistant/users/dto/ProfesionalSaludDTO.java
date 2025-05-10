@@ -1,7 +1,10 @@
 package com.careassistant.users.dto;
 
+import java.util.UUID;
+
 public class ProfesionalSaludDTO {
 
+	private UUID id;
 	private String nombre;
 	private String especialidad;
 	private String ciudad;
@@ -9,6 +12,14 @@ public class ProfesionalSaludDTO {
 	private String presentacion;
 	private String disponibilidad;
 	private String rol;
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
 
 	public String getNombre() {
 		return nombre;

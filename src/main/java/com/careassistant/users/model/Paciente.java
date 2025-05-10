@@ -1,5 +1,7 @@
 package com.careassistant.users.model;
 
+import java.util.UUID;
+
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotBlank;
 
@@ -15,7 +17,7 @@ public class Paciente extends Usuario {
 		super();
 	}
 
-	public Paciente(Long id, String nombre, String apellido, String correo, String contraseña, String rol, Integer edad, String ciudad) {
+	public Paciente(UUID id, String nombre, String apellido, String correo, String contraseña, String rol, Integer edad, String ciudad) {
 		super(id, nombre, apellido, correo, contraseña, rol);
 		this.edad = edad;
 		this.ciudad = ciudad;

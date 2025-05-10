@@ -2,6 +2,7 @@ package com.careassistant.users.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class UsuarioController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> obtenerUsuarioPorId(@PathVariable Long id) {
+	public ResponseEntity<Usuario> obtenerUsuarioPorId(@PathVariable UUID id) {
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 	}
@@ -61,7 +62,7 @@ public class UsuarioController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> eliminarUsuario(@PathVariable Long id) {
+	public ResponseEntity<Void> eliminarUsuario(@PathVariable UUID id) {
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		if (usuario.isPresent()) {
 			usuarioRepository.deleteById(id);

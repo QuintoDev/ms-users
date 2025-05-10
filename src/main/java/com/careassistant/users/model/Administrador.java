@@ -1,5 +1,7 @@
 package com.careassistant.users.model;
 
+import java.util.UUID;
+
 import jakarta.persistence.Entity;
 
 @Entity
@@ -9,7 +11,7 @@ public class Administrador extends Usuario {
 		super();
 	}
 
-	public Administrador(Long id, String nombre, String apellido, String correo, String contraseña, String rol) {
+	public Administrador(UUID id, String nombre, String apellido, String correo, String contraseña, String rol) {
 		super(id, nombre, apellido, correo, contraseña, rol);
 	}
 

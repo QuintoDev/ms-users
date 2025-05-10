@@ -32,6 +32,7 @@ public class ProfesionalSaludService {
 	public ProfesionalSalud registrar(ProfesionalSalud profesional) throws Exception {
 		String cifrado = aes.encrypt(profesional.getPresentacion());
 		profesional.setPresentacion(cifrado);
+		profesional.setRol("PROFESIONAL_SALUD");
 		profesional.setContraseña(passwordEncoder.encode(profesional.getContraseña()));
 		logger.info("{} se ha registrado correctamente.", profesional.getNombre());
 		return profesionalSaludRepository.save(profesional);
@@ -50,6 +51,7 @@ public class ProfesionalSaludService {
 
 		return profesionales.stream().map(p -> {
 			ProfesionalSaludDTO dto = new ProfesionalSaludDTO();
+			dto.setId(p.getId());
 			dto.setNombre(p.getNombre());
 			dto.setEspecialidad(p.getEspecialidad());
 			dto.setCiudad(p.getCiudad());

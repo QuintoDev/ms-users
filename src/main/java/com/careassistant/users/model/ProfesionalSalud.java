@@ -1,5 +1,7 @@
 package com.careassistant.users.model;
 
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotBlank;
@@ -26,7 +28,7 @@ public class ProfesionalSalud extends Usuario {
 		super();
 	}
 
-	public ProfesionalSalud(Long id, String nombre, String apellido, String correo, String contraseña, String rol, String especialidad,
+	public ProfesionalSalud(UUID id, String nombre, String apellido, String correo, String contraseña, String rol, String especialidad,
 			String disponibilidad, String presentacion, String ciudad) {
 		super(id, nombre, apellido, correo, contraseña, rol);
 		this.especialidad = especialidad;
