@@ -31,21 +31,4 @@ public class AES256Encryptor {
 		return Base64.getEncoder().encodeToString(encrypted);
 	}
 
-	public String decrypt(String encryptedText) throws Exception {
-		Cipher cipher = Cipher.getInstance("AES");
-		cipher.init(Cipher.DECRYPT_MODE, secretKey);
-		byte[] decodedBytes = Base64.getDecoder().decode(encryptedText);
-		byte[] decrypted = cipher.doFinal(decodedBytes);
-		return new String(decrypted, StandardCharsets.UTF_8);
-	}
-	
-	public boolean matches(String plainText, String encryptedText) {
-		try {
-			String decrypted = decrypt(encryptedText);
-			return decrypted.equals(plainText);
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
 }
