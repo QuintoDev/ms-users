@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.careassistant.users.dto.LoginDTO;
-import com.careassistant.users.dto.ProfesionalSaludDTO;
+import com.careassistant.users.model.ProfesionalSalud;
 import com.careassistant.users.model.Usuario;
 import com.careassistant.users.repository.ProfesionalSaludRepository;
 import com.careassistant.users.repository.UsuarioRepository;
@@ -50,13 +50,11 @@ public class UsuarioController {
 	public ResponseEntity<?> obtenerUsuarios(@RequestParam(required = false) String especialidad,
 			@RequestParam(required = false) String ciudad) {
 
-		// Buscar por filtros: especialidad y ciudad
 		if (especialidad != null && ciudad != null) {
-			List<ProfesionalSaludDTO> resultados = profesionalSaludService.buscarPorFiltros(especialidad, ciudad);
+			List<ProfesionalSalud> resultados = profesionalSaludService.buscarPorFiltros(especialidad, ciudad);
 			return ResponseEntity.ok(resultados);
 		}
 
-		// Obtener todos los usuarios
 		List<Usuario> usuarios = usuarioRepository.findAll();
 		return ResponseEntity.ok(usuarios);
 	}

@@ -15,14 +15,14 @@ public class Paciente extends Usuario {
 	@NotBlank(message = "La ciudad es obligatoria")
 	private String ciudad;
 
-	private Integer celular;
+	private Long celular;
 
 	public Paciente() {
 		super();
 	}
 
 	public Paciente(UUID id, String nombre, String apellido, String correo, String contraseña, String rol, Integer edad,
-			String parentesco, String ciudad, Integer celular) {
+			String parentesco, String ciudad, Long celular) {
 		super(id, nombre, apellido, correo, contraseña, rol);
 		this.edad = edad;
 		this.ciudad = ciudad;
@@ -53,11 +53,11 @@ public class Paciente extends Usuario {
 		this.ciudad = ciudad;
 	}
 
-	public Integer getCelular() {
+	public Long getCelular() {
 		return celular;
 	}
 
-	public void setCelular(Integer celular) {
+	public void setCelular(Long celular) {
 		this.celular = celular;
 	}
 

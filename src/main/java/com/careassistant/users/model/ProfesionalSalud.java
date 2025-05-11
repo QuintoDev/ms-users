@@ -1,5 +1,6 @@
 package com.careassistant.users.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -14,7 +15,7 @@ public class ProfesionalSalud extends Usuario {
 	@Column(nullable = false)
 	private String especialidad;
 
-	private String disponibilidad;
+	private List<String> disponibilidad;
 
 	@NotBlank(message = "La ciudad es obligatoria")
 	private String ciudad;
@@ -28,8 +29,8 @@ public class ProfesionalSalud extends Usuario {
 		super();
 	}
 
-	public ProfesionalSalud(UUID id, String nombre, String apellido, String correo, String contraseña, String rol, String especialidad,
-			String disponibilidad, String presentacion, String ciudad) {
+	public ProfesionalSalud(UUID id, String nombre, String apellido, String correo, String contraseña, String rol,
+			String especialidad, List<String> disponibilidad, String presentacion, String ciudad) {
 		super(id, nombre, apellido, correo, contraseña, rol);
 		this.especialidad = especialidad;
 		this.disponibilidad = disponibilidad;
@@ -45,11 +46,11 @@ public class ProfesionalSalud extends Usuario {
 		this.especialidad = especialidad;
 	}
 
-	public String getDisponibilidad() {
+	public List<String> getDisponibilidad() {
 		return disponibilidad;
 	}
 
-	public void setDisponibilidad(String disponibilidad) {
+	public void setDisponibilidad(List<String> disponibilidad) {
 		this.disponibilidad = disponibilidad;
 	}
 
