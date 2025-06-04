@@ -1,5 +1,5 @@
 # Etapa 1: construir el JAR
-FROM maven:3.9.3-eclipse-temurin-21 AS builder
+FROM maven AS builder
 
 WORKDIR /app
 COPY . .
